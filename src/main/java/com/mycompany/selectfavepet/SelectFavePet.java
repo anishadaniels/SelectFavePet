@@ -17,7 +17,7 @@ public class SelectFavePet extends JFrame implements ActionListener {
     private final JRadioButton catButton;
     private final JRadioButton birdButton;
     private final JRadioButton rabbitButton;
-    private final JRadioButton fishButton;
+    private final JRadioButton pigButton;
     private final ButtonGroup group;
     
     // Label to display the image
@@ -25,7 +25,7 @@ public class SelectFavePet extends JFrame implements ActionListener {
 
     public SelectFavePet() {
         // Set the title of the JFrame
-        setTitle("Favorite Pet Selector");
+        setTitle("Animal Selector");
         
         // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,7 +38,7 @@ public class SelectFavePet extends JFrame implements ActionListener {
         catButton = new JRadioButton("Cat");
         birdButton = new JRadioButton("Bird");
         rabbitButton = new JRadioButton("Rabbit");
-        fishButton = new JRadioButton("Fish");
+        pigButton = new JRadioButton("Pig");
 
         // Group the radio buttons to allow only one selection at a time
         group = new ButtonGroup();
@@ -46,14 +46,14 @@ public class SelectFavePet extends JFrame implements ActionListener {
         group.add(catButton);
         group.add(birdButton);
         group.add(rabbitButton);
-        group.add(fishButton);
+        group.add(pigButton);
 
         // Add action listeners for the radio buttons
         dogButton.addActionListener(this);
         catButton.addActionListener(this);
         birdButton.addActionListener(this);
         rabbitButton.addActionListener(this);
-        fishButton.addActionListener(this);
+        pigButton.addActionListener(this);
 
         // Label to display images
         imageLabel = new JLabel();
@@ -69,7 +69,7 @@ public class SelectFavePet extends JFrame implements ActionListener {
         buttonPanel.add(catButton);
         buttonPanel.add(birdButton);
         buttonPanel.add(rabbitButton);
-        buttonPanel.add(fishButton);
+        buttonPanel.add(pigButton);
 
         // Add the button panel and image label to the frame
         add(buttonPanel, BorderLayout.WEST);
@@ -106,13 +106,13 @@ public class SelectFavePet extends JFrame implements ActionListener {
     }
 
     private void askFavoritePet() {
-        String[] options = {"Dog", "Cat", "Bird", "Rabbit", "Fish"};
+        String[] options = {"Dog", "Cat", "Bird", "Rabbit", "Pig"};
         
         // Show a dialog to the user to select their favorite pet
         String selectedPet = (String) JOptionPane.showInputDialog(
                 this, 
-                "What is your favorite pet?", 
-                "Select Your Favorite Pet", 
+                "What is your favorite Animal?", 
+                "Select Your Favorite Animal", 
                 JOptionPane.QUESTION_MESSAGE, 
                 null, 
                 options, 
@@ -143,7 +143,7 @@ public class SelectFavePet extends JFrame implements ActionListener {
                 setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Rabbit.png");
                 break;
             case "Fish":
-                fishButton.setSelected(true);
+                pigButton.setSelected(true);
                 setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Fish.png");
                 break;
         }
@@ -160,8 +160,8 @@ public class SelectFavePet extends JFrame implements ActionListener {
             setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Bird.png");
         } else if (rabbitButton.isSelected()) {
             setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Rabbit.png");
-        } else if (fishButton.isSelected()) {
-            setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Fish.png");
+        } else if (pigButton.isSelected()) {
+            setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Pig.jpeg");
         }
     }
 
