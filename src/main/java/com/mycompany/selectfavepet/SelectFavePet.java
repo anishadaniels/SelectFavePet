@@ -6,13 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Pet selector application that allows users to choose their favorite pet
- * using radio buttons and shows the pet's photo.
+ * Pet selector application that asks users to choose their favorite pet
+ * and shows the pet's photo.
  * 
  * @author Anisha.Amondi
  */
 public class SelectFavePet extends JFrame implements ActionListener {
-
     // Declare radio buttons as final
     private final JRadioButton dogButton;
     private final JRadioButton catButton;
@@ -27,7 +26,13 @@ public class SelectFavePet extends JFrame implements ActionListener {
     public SelectFavePet() {
         // Set the title of the JFrame
         setTitle("Favorite Pet Selector");
-
+        
+        // Set the default close operation
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Change the background color of the frame to red
+        getContentPane().setBackground(Color.RED);
+        
         // Create the radio buttons
         dogButton = new JRadioButton("Dog");
         catButton = new JRadioButton("Cat");
@@ -70,10 +75,78 @@ public class SelectFavePet extends JFrame implements ActionListener {
         add(buttonPanel, BorderLayout.WEST);
         add(imageLabel, BorderLayout.CENTER);
 
-        // Set default close operation and size of the window
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Set the size of the window
         setSize(600, 400);
         setVisible(true);
+        
+        // Add a button panel for minimize, maximize, and close buttons
+        JPanel titlePanel = new JPanel();
+        JButton minimizeButton = new JButton("-");
+        JButton maximizeButton = new JButton("+");
+        JButton closeButton = new JButton("X");
+
+        minimizeButton.addActionListener(e -> setState(Frame.ICONIFIED));
+        maximizeButton.addActionListener(e -> {
+            if (getExtendedState() == JFrame.MAXIMIZED_BOTH) {
+                setExtendedState(JFrame.NORMAL);
+            } else {
+                setExtendedState(JFrame.MAXIMIZED_BOTH);
+            }
+        });
+        closeButton.addActionListener(e -> System.exit(0));
+
+        titlePanel.add(minimizeButton);
+        titlePanel.add(maximizeButton);
+        titlePanel.add(closeButton);
+
+        add(titlePanel, BorderLayout.NORTH);
+
+        // Ask the user for their favorite pet
+        askFavoritePet();
+    }
+
+    private void askFavoritePet() {
+        String[] options = {"Dog", "Cat", "Bird", "Rabbit", "Fish"};
+        
+        // Show a dialog to the user to select their favorite pet
+        String selectedPet = (String) JOptionPane.showInputDialog(
+                this, 
+                "What is your favorite pet?", 
+                "Select Your Favorite Pet", 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                options, 
+                options[0]
+        );
+        
+        // If user cancels or closes the dialog, exit the program
+        if (selectedPet == null) {
+            System.exit(0);
+        }
+
+        // Set the corresponding radio button based on the selected pet
+        switch (selectedPet) {
+            case "Dog":
+                dogButton.setSelected(true);
+                setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Dog.jpeg");
+                break;
+            case "Cat":
+                catButton.setSelected(true);
+                setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Cat.jpeg");
+                break;
+            case "Bird":
+                birdButton.setSelected(true);
+                setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Bird.png");
+                break;
+            case "Rabbit":
+                rabbitButton.setSelected(true);
+                setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Rabbit.png");
+                break;
+            case "Fish":
+                fishButton.setSelected(true);
+                setImage("C:\\Users\\Anisha.Amondi\\OneDrive - Osho chemical Industries Ltd\\Documents\\NetBeansProjects\\SelectFavePet\\images\\Fish.png");
+                break;
+        }
     }
 
     @Override
